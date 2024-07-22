@@ -1,3 +1,4 @@
+import 'package:bmi_calculator/result/result_screen.dart';
 import 'package:flutter/material.dart';
 
 class MainScreen extends StatefulWidget {
@@ -30,7 +31,7 @@ class _MainScreenState extends State<MainScreen> {
                 ),
                 keyboardType: TextInputType.number,
                 validator: (value) {
-                  if(value == null || value.isEmpty) {
+                  if (value == null || value.isEmpty) {
                     return '키를 입력하세요';
                   }
                   return null;
@@ -44,7 +45,7 @@ class _MainScreenState extends State<MainScreen> {
                 ),
                 keyboardType: TextInputType.number,
                 validator: (value) {
-                  if(value == null || value.isEmpty) {
+                  if (value == null || value.isEmpty) {
                     return '몸무게를 입력하세요';
                   }
                   return null;
@@ -53,9 +54,18 @@ class _MainScreenState extends State<MainScreen> {
               const SizedBox(height: 8),
               ElevatedButton(
                 onPressed: () {
-                  if(_formKey.currentState?.validate() ?? false) {
-
+                  if (_formKey.currentState?.validate() ?? false) {
+                    return;
                   }
+
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const ResultScreen(
+                          height: 183,
+                          weight: 80.6,
+                        )),
+                  );
                 },
                 child: const Text('결과'),
               ),
